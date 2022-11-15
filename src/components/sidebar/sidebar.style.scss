@@ -1,0 +1,48 @@
+.sidebar {
+  background: var(--color-black);
+  padding: 2.4rem 0;
+
+  &__list {
+    list-style: none;
+    color: var(--color-white);
+    font-size: var(--default-font-size);
+  }
+
+  &__link {
+    display: grid;
+    grid-template-columns: repeat(2, min-content);
+    background-color: transparent;
+    column-gap: 1rem;
+    align-items: center;
+    position: relative;
+    padding: 1rem 1.2rem;
+    min-width: 12rem;
+    cursor: pointer;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: var(--color-green);
+      width: 0%;
+      height: 100%;
+      transition: width 0.3s;
+    }
+  }
+
+  &__link--active {
+    color: var(--color-green);
+    &::after {
+      width: 0%;
+    }
+  }
+
+  &__item:hover::after {
+    width: 0%;
+  }
+
+  &__item-icon path{
+    fill: var(--color-white);
+  }
+}

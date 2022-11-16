@@ -1,4 +1,4 @@
-$color-black: #35495E;
+$color-black: #35495e;
 
 .App {
   display: grid;
@@ -10,4 +10,5 @@ $color-black: #35495E;
 .content {
   background-color: rgba($color-black, 0.6);
   grid-column: 2;
+  padding: 1.2rem;
 }

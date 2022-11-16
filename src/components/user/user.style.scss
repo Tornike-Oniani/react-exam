@@ -1,0 +1,43 @@
+.user {
+  display: grid;
+  grid-template-columns: 4.5rem repeat(3, minmax(min-content, 1fr)) min-content;
+  column-gap: 1.2rem;
+  align-items: center;
+  padding: 1.2rem;
+  font-size: var(--default-font-size);
+  background-color: var(--color-white);
+  border-radius: 0.6rem;
+  color: var(--color-black);
+
+  &:not(:last-child) {
+    margin-bottom: 0.6rem;
+  }
+
+  &__icon {
+    width: 2.4rem;
+    height: 2.4rem;
+
+    path {
+      fill: var(--color-black);
+    }
+  }
+
+  &__alias {
+    font-weight: bold;
+  }
+
+  &__name {
+  }
+
+  &__website {
+    font-style: italic;
+  }
+
+  &__details {
+    background-color: var(--color-green);
+    color: var(--color-white);
+    text-decoration: none;
+    padding: 0.3rem 0.6rem;
+    border-radius: 0.6rem;
+  }
+}

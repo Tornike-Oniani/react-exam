@@ -6,8 +6,10 @@ import FullUser from './components/full-user/full-user.component';
 import HomePage from './pages/homepage/homepage.component';
 import UsersPage from './pages/userspage/userspage.component';
 import AboutPage from './pages/aboutpage/aboutpage.component';
+import Footer from './components/footer/footer.component';
 
 import './App.scss';
+import './styles/_typography.scss';
 
 function App() {
   return (
@@ -22,6 +24,7 @@ function App() {
           <Route exact path="/about" element={<AboutPage />} />
         </Routes>
       </div>
+      <Footer />
     </div>
   );
 }

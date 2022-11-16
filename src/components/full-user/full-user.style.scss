@@ -1,7 +1,7 @@
 .full-user {
   display: grid;
-  grid-template-rows: repeat(2, min-content);
-  grid-template-columns: min-content max-content;
+  grid-template-rows: repeat(3, min-content);
+  grid-template-columns: min-content max-content 1fr;
   column-gap: 1.6rem;
   row-gap: 2rem;
   background-color: var(--color-white);
@@ -50,7 +50,7 @@
 
   &__website {
     font-style: italic;
-    color: lightskyblue;
+    color: var(--color-blue);
   }
 
   &__location-info {
@@ -59,7 +59,13 @@
     margin-left: 2rem;
   }
 
+  &__company-info {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
   &__post-header {
+    grid-row: 3;
   }
 }
 
@@ -94,29 +100,10 @@
 }
 
 .posts {
-  grid-column: 1 / span 2;
+  grid-column: 1 / span 3;
   list-style: none;
 
-  &__item {
-    position: relative;
-    padding: 0 1.2rem;
-    &:not(:last-child) {
-      margin-bottom: 1.2rem;
-    }
-
-    &::before {
-      content: '';
-      display: inline-block;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 6px;
-      height: 100%;
-      background-color: var(--color-green);
-    }
-  }
-
-  &__title {
-    margin-bottom: 0.6rem;
+  &__item:not(:last-child){
+    margin-bottom: 1.2rem;
   }
 }

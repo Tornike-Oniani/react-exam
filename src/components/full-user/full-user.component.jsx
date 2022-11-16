@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
+import Post from '../../components/post/post.component'
+
 import { ReactComponent as UserPhoto } from '../../assets/address-book.svg';
 
 import './full-user.style.scss';
@@ -83,9 +85,8 @@ const FullUser = () => {
       <ul className="posts">
         {posts.map((post) => {
           return (
-            <li className="posts__item">
-              <h4 className="posts__title">{post?.title}</h4>
-              <p className="posts__text">{post?.body}</p>
+            <li key={post.id} className="posts__item">
+              <Post post={post} />
             </li>
           );
         })}

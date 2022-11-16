@@ -27,7 +27,7 @@ const UsersPage = () => {
         <div className="details">Details</div>
       </div>
       {users.map((user) => {
-        return <User user={user} />;
+        return <User key={user.id} user={user} />;
       })}
     </div>
   );

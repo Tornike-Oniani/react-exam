@@ -1,0 +1,19 @@
+.post {
+  position: relative;
+  padding: 0 1.6rem;
+
+  &::before {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 8px;
+    height: 100%;
+    background-color: var(--color-green);
+  }  
+    
+  &__title {
+    margin-bottom: 0.6rem;
+  }
+}

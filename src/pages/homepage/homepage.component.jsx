@@ -1,9 +1,11 @@
 import React from "react";
 
+import './homepage.style.scss';
+
 const HomePage = () => {
   return (
     <div className="homepage">
-      <p>Home</p>    
+      <h2 className="big-header">Home</h2>    
     </div>
   )
 }

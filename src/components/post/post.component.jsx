@@ -1,11 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import './post.style.scss';
 
-const Post = ({ post: { title, body } }) => {
+const Post = ({ post: { id, title, body } }) => {
   return (
     <div className="post">
-      <h4 className="post__title">{title}</h4>
+      <Link to={`/posts/${id}`} className="post__title">
+        {title}
+      </Link>
       <p className="post__text">{body}</p>
     </div>
   );

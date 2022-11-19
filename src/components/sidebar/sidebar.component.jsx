@@ -8,20 +8,15 @@ import { ReactComponent as QuestionIcon } from '../../assets/question.svg';
 import './sidebar.style.scss';
 
 const Sidebar = () => {
-  const [active, setActive] = useState('Home');
-
   return (
     <div className="sidebar">
       <ul className="sidebar__list">
         <li className="sidebar__item">
           <NavLink
             to="/"
-            className={
-              active === 'Home'
-                ? 'sidebar__link sidebar__link--active'
-                : 'sidebar__link'
+            className={({ isActive }) =>
+              isActive ? 'sidebar__link sidebar__link--active' : 'sidebar__link'
             }
-            onClick={() => setActive('Home')}
           >
             <HomeIcon className="sidebar__item-icon" />
             <span className="sidebar__item-text">Home</span>
@@ -30,12 +25,9 @@ const Sidebar = () => {
         <li className="sidebar__item">
           <NavLink
             to="/users"
-            className={
-              active === 'Users'
-                ? 'sidebar__link sidebar__link--active'
-                : 'sidebar__link'
+            className={({ isActive }) =>
+              isActive ? 'sidebar__link sidebar__link--active' : 'sidebar__link'
             }
-            onClick={() => setActive('Users')}
           >
             <UsersIcon className="sidebar__item-icon" />
             <span className="sidebar__item-text">Users</span>
@@ -44,12 +36,9 @@ const Sidebar = () => {
         <li className="sidebar__item">
           <NavLink
             to="/about"
-            className={
-              active === 'About'
-                ? 'sidebar__link sidebar__link--active'
-                : 'sidebar__link'
+            className={({ isActive }) =>
+              isActive ? 'sidebar__link sidebar__link--active' : 'sidebar__link'
             }
-            onClick={() => setActive('About')}
           >
             <QuestionIcon className="sidebar__item-icon" />
             <span className="sidebar__item-text">About</span>

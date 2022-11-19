@@ -12,13 +12,14 @@ const FullPost = () => {
 
   useEffect(() => {
     Promise.all([
-      fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
-        .then((res) => res.json())
-        .then((response) => setTitle(response.title)),
-      fetch(`https://jsonplaceholder.typicode.com/posts/${id}/comments`)
-        .then((res) => res.json())
-        .then((response) => setComments(response)),
-    ]);
+      fetch(`https://jsonplaceholder.typicode.com/posts/${id}`),
+      fetch(`https://jsonplaceholder.typicode.com/posts/${id}/comments`),
+    ])
+      .then((results) => Promise.all(results.map((r) => r.json())))
+      .then((response) => {
+        setTitle(response[0].title);
+        setComments(response[1]);
+      });
   }, [id]);
 
   return (

@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { resolvePath, useParams } from 'react-router-dom';
 
-import Post from '../../components/post/post.component'
+import Post from '../../components/post/post.component';
 
 import { ReactComponent as UserPhoto } from '../../assets/address-book.svg';
 
@@ -16,20 +16,17 @@ const FullUser = () => {
     Promise.all([
       fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
         method: 'GET',
-      })
-        .then((res) => res.json())
-        .then((response) => {
-          setUser(response);
-        }),
+      }),
       fetch(`https://jsonplaceholder.typicode.com/posts`, {
         method: 'GET',
-      })
-        .then((res) => res.json())
-        .then((response) => {
-          const userPosts = response.filter((post) => post.userId == id);
-          setPosts(userPosts);
-        }),
-    ]);
+      }),
+    ])
+      .then((results) => Promise.all(results.map((r) => r.json())))
+      .then((response) => {
+        setUser(response[0]);
+        const userPosts = response[1].filter((post) => post.userId == id);
+        setPosts(userPosts);
+      });
   }, [id]);
 
   return (

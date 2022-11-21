@@ -1,9 +1,22 @@
 .full-post {
+  &__wrapper {
+    background-color: var(--color-gray-light);
+    padding: 1.6rem;
+    border-radius: 0.3rem;
+    margin-bottom: 2rem;
+  }
+
   &__title {
     font-size: 2rem;
     color: var(--color-green);
     text-decoration: underline;
-    margin-bottom: 2rem;
+    margin-bottom: 0.6rem;
+  }
+
+  &__body {
+    font-size: var(--default-font-size);
+    color: var(--color-black);
+    font-weight: normal;
   }
 
   &__comment-label {

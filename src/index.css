@@ -8,10 +8,11 @@
 
 html {
   font-size: 62.5%;
-  --color-black: #35495E;
-  --color-green: #41B883;
+  --color-black: #35495e;
+  --color-green: #41b883;
   --color-white: #ffffff;
   --color-blue: #2596be;
+  --color-gray-light: #ebebeb;
   --default-font-size: 1.6rem;
 }
 

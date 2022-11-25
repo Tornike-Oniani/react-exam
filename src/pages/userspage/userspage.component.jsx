@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import Loader from '../../components/loader/loader.component';
 
 import User from '../../components/user/user.component';
 
 import './userpage.style.scss';
 
 const UsersPage = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
@@ -14,7 +16,8 @@ const UsersPage = () => {
       .then((res) => res.json())
       .then((response) => {
         setUsers(response);
-      });
+      })
+      .finally(() => setIsLoading(false));
   }, []);
 
   return (
@@ -26,9 +29,13 @@ const UsersPage = () => {
         <div className="website">Website</div>
         <div className="details">Details</div>
       </div>
-      {users.map((user) => {
-        return <User key={user.id} user={user} />;
-      })}
+      {isLoading ? (
+        <Loader />
+      ) : (
+        users.map((user) => {
+          return <User key={user.id} user={user} />;
+        })
+      )}
     </div>
   );
 };

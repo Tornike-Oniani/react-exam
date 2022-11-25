@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
+import Loader from '../loader/loader.component';
 import Comment from '../comment/comment.component';
 
 import './full-post.style.scss';
 
 const FullPost = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const [title, setTitle] = useState();
   const [body, setBody] = useState();
   const [comments, setComments] = useState([]);
@@ -21,10 +23,13 @@ const FullPost = () => {
         setTitle(response[0].title);
         setBody(response[0].body);
         setComments(response[1]);
-      });
+      })
+      .finally(() => setIsLoading(false));
   }, [id]);
 
-  return (
+  return isLoading ? (
+    <Loader />
+  ) : (
     <div className="full-post">
       <div className="full-post__wrapper">
         <h3 className="full-post__title">{title}</h3>

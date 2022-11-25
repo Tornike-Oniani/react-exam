@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { resolvePath, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
+import Loader from '../../components/loader/loader.component';
 import Post from '../../components/post/post.component';
 
 import { ReactComponent as UserPhoto } from '../../assets/address-book.svg';
@@ -8,6 +9,7 @@ import { ReactComponent as UserPhoto } from '../../assets/address-book.svg';
 import './full-user.style.scss';
 
 const FullUser = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState();
   const [posts, setPosts] = useState([]);
   const { id } = useParams();
@@ -26,10 +28,13 @@ const FullUser = () => {
         setUser(response[0]);
         const userPosts = response[1].filter((post) => post.userId == id);
         setPosts(userPosts);
-      });
+      })
+      .finally(() => setIsLoading(false));
   }, [id]);
 
-  return (
+  return isLoading ? (
+    <Loader />
+  ) : (
     <div className="full-user">
       <UserPhoto className="full-user__photo" />
       <div className="full-user__personal">

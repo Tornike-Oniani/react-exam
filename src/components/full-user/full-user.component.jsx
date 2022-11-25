@@ -6,6 +6,8 @@ import Post from '../../components/post/post.component';
 
 import { ReactComponent as UserPhoto } from '../../assets/address-book.svg';
 
+import { getFullUser, getUserPosts } from '../../api/service';
+
 import './full-user.style.scss';
 
 const FullUser = () => {
@@ -15,19 +17,10 @@ const FullUser = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    Promise.all([
-      fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
-        method: 'GET',
-      }),
-      fetch(`https://jsonplaceholder.typicode.com/posts`, {
-        method: 'GET',
-      }),
-    ])
-      .then((results) => Promise.all(results.map((r) => r.json())))
-      .then((response) => {
-        setUser(response[0]);
-        const userPosts = response[1].filter((post) => post.userId == id);
-        setPosts(userPosts);
+    Promise.all([getFullUser(id), getUserPosts(id)])
+      .then((results) => {
+        setUser(results[0]);
+        setPosts(results[1]);
       })
       .finally(() => setIsLoading(false));
   }, [id]);

@@ -3,6 +3,8 @@ import Loader from '../../components/loader/loader.component';
 
 import User from '../../components/user/user.component';
 
+import { getUsers } from '../../api/service';
+
 import './userpage.style.scss';
 
 const UsersPage = () => {
@@ -10,13 +12,8 @@ const UsersPage = () => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    fetch(`https://jsonplaceholder.typicode.com/users`, {
-      method: 'GET',
-    })
-      .then((res) => res.json())
-      .then((response) => {
-        setUsers(response);
-      })
+    getUsers()
+      .then((response) => setUsers(response))
       .finally(() => setIsLoading(false));
   }, []);
 

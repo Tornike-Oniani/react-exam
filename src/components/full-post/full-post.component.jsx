@@ -4,6 +4,8 @@ import { useParams } from 'react-router-dom';
 import Loader from '../loader/loader.component';
 import Comment from '../comment/comment.component';
 
+import { getFullPost, getPostComments } from '../../api/service';
+
 import './full-post.style.scss';
 
 const FullPost = () => {
@@ -14,15 +16,11 @@ const FullPost = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    Promise.all([
-      fetch(`https://jsonplaceholder.typicode.com/posts/${id}`),
-      fetch(`https://jsonplaceholder.typicode.com/posts/${id}/comments`),
-    ])
-      .then((results) => Promise.all(results.map((r) => r.json())))
-      .then((response) => {
-        setTitle(response[0].title);
-        setBody(response[0].body);
-        setComments(response[1]);
+    Promise.all([getFullPost(id), getPostComments(id)])
+      .then((results) => {
+        setTitle(results[0].title);
+        setBody(results[0].body);
+        setComments(results[1]);
       })
       .finally(() => setIsLoading(false));
   }, [id]);
